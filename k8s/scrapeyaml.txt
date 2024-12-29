@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "80"
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp-container
+        image: webapp-image:latest
+        ports:
+        - containerPort: 80
